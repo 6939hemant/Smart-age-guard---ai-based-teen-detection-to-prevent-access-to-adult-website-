@@ -1,4 +1,4 @@
-# Smart-age-guard---ai-based-teen-detection-to-prevent-access-to-adult-website-
+# Smart-age-guard-ai-based-teen-detection-to-prevent-access-to-adult-website-
 # Smart AgeGuard – AI-Based Teen Detection to Prevent Access to Adult Websites
 
 A smart, AI-powered web access control system that uses facial recognition and age estimation to block underage users (teens/kids) from accessing adult websites. This project replaces weak, traditional yes/no age verification with a more secure and ethical solution.
