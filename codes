@@ -1,0 +1,47 @@
+Smart Age Guard - AI-Based Teen Detection to Block Adult Sites
+
+""" Project Summary: Detects user's age in real-time using webcam and facial analysis, and restricts access to adult content/websites if underage. """
+
+✅ Required Libraries
+
+import cv2 import time from deepface import DeepFace import pyautogui
+
+✅ Age Threshold (e.g., Block if below 18)
+
+AGE_THRESHOLD = 18
+
+✅ Blocked Website List (can be extended)
+
+blocked_sites = [ "www.exampleadultsite.com", "www.pornsite.com", "www.xvideos.com" ]
+
+✅ Helper Function to Detect Age
+
+def detect_age(frame): try: result = DeepFace.analyze(frame, actions=['age'], enforce_detection=False) age = result[0]['age'] print(f"Detected Age: {age}") return age except Exception as e: print("Error in age detection:", e) return None
+
+✅ Blocking Function (Demo Simulation)
+
+def block_site(): print("BLOCKING ACCESS TO ADULT SITE!") pyautogui.alert("Access Denied: You are underage.") pyautogui.hotkey("ctrl", "w")  # Closes current tab (simulate block)
+
+✅ Main Loop for Detection
+
+cap = cv2.VideoCapture(0)
+
+print("[INFO] Starting webcam for age verification...") time.sleep(2)
+
+try: while True: ret, frame = cap.read() if not ret: break
+
+frame = cv2.resize(frame, (640, 480))
+    age = detect_age(frame)
+
+    if age is not None and age < AGE_THRESHOLD:
+        block_site()
+
+    cv2.imshow("Smart Age Guard", frame)
+
+    if cv2.waitKey(10) & 0xFF == ord('q'):
+        break
+
+except KeyboardInterrupt: print("[INFO] Stopped by user.")
+
+cap.release() cv2.destroyAllWindows()
+
